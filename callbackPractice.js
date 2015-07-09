@@ -23,12 +23,14 @@ and what you should write is the favNum function that makes the code above work,
 */
 
 
+var first = function(arr, callBack) {
+    callBack(arr[0]);
+};
 
-  //Code Here for first
-  
+
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
-  console.log('The first name in names is ', firstName)
+  console.log('\nThe first name in names is ', firstName, '\n')
 });
 
 
@@ -38,11 +40,13 @@ first(names, function(firstName){
 
 
 
-  //Code Here for last
+var last = function(arr, callBack) {
+    callBack(arr.slice(-1)[0]);
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 last(names, function(lastName){
-  console.log('The last name in names is ', lastName);
+  console.log('The last name in names is ', lastName, '\n');
 });
 
 
@@ -56,11 +60,13 @@ last(names, function(lastName){
 
 
 
-  //Code Here for multiply
+var multiply = function(num1, num2, callBack) {
+    callBack(num1 * num2);
+};
 
 multiply(4, 3, function(answer){
-  console.log('The answer is ', answer); //should console.log 12
-})
+  console.log('The answer is ', answer, '\n'); //should console.log 12
+});
 
 
 
@@ -72,12 +78,16 @@ multiply(4, 3, function(answer){
 
 
 
-  //Code Here for contains
+var contains = function(arr, str, callBack) {
+    if (arr.indexOf(str)) {
+        callBack(true)
+    }
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains(names, 'Colt', function(result){
   if(result === true){
-    console.log('Colt is in the array');
+    console.log('Colt is in the array', '\n');
   } else {
     console.log('Colt is not in the array');
   }
@@ -92,11 +102,19 @@ contains(names, 'Colt', function(result){
 
 
 
-    //Code Here for uniq
+var uniq = function(arr, callBack) {
+    for (var i = arr.length - 1; i >= 0; i--) {
+        for (var j = i - 1; j >= 0; j--) {
+            if (arr[i] === arr[j]) {
+                arr.splice(j, 1);
+            }
+        }
+    } callBack(arr);
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 uniq(names, function(uniqArr){
-  console.log('The new names array with all the duplicate items removed is ', uniqArr);
+  console.log('The new names array with all the duplicate items removed is ', uniqArr, '\n');
 });
 
 
@@ -108,7 +126,11 @@ uniq(names, function(uniqArr){
 
 
 
-    //Code Here for each
+var each = function(arr, callBack) {
+    for (var i = 0; i < arr.length; i++) {
+        callBack(arr[i], i);
+    }
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
@@ -125,7 +147,13 @@ each(names, function(item, indice){
 
 
 
- //code here for getUserById
+var getUserById = function(obj, str, callBack) {
+    for (var i in obj) {
+        if (obj[i].id === str) {
+            callBack(obj[i]);
+        }
+    }
+};
 
 var users = [
   {
@@ -145,9 +173,9 @@ var users = [
     email: 'ryan@gmail.com',
     name: 'Ryan',
     address: '192 East 32 North'
-  },
+  }
 ];
 
 getUserById(users, '16t', function(user){
-  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address); 
+  console.log('\nThe user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address);
 });
